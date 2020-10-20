@@ -37,8 +37,14 @@ class CategoryController extends Controller
 
         $products = $repo->findProducts()->where('status', 1)->all();
 
+        $parentCategory = isset($category->parent_id) ? $repo->getParentCategory($category) : $category;
+
+        $parentRepo = new CategoryRepository($parentCategory);
+
         return view('front.categories.category', [
             'category' => $category,
+            'parentCategory' => $parentCategory,
+            'childCategories' => $parentRepo->findChildren(),
             'products' => $repo->paginateArrayResults($products, 20)
         ]);
     }
