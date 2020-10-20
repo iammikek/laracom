@@ -59,6 +59,15 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     }
 
     /**
+     * @param Category $category
+     * @return Category
+     */
+    public function getParentCategory(Category $category): Category
+    {
+        return Category::defaultOrder()->ancestorsOf($category->id)->first();
+    }
+
+    /**
      * Create the category
      *
      * @param array $params
