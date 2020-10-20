@@ -35,6 +35,7 @@ class GlobalTemplateServiceProvider extends ServiceProvider
 
         view()->composer(['layouts.front.app', 'front.categories.sidebar-category'], function ($view) {
             $view->with('categories', $this->getCategories());
+            $view->with('rootCategories', $this->getRootCategories());
             $view->with('cartCount', $this->getCartCount());
         });
 
@@ -77,6 +78,17 @@ class GlobalTemplateServiceProvider extends ServiceProvider
     {
         $categoryRepo = new CategoryRepository(new Category);
         return $categoryRepo->listCategories('name', 'asc', 1)->whereIn('parent_id', [1]);
+    }
+
+    /**
+     * Get all the root categories
+     * @return Collection
+     */
+    private function getRootCategories()
+    {
+        $categoryRepo = new CategoryRepository(new Category);
+
+        return $categoryRepo->rootCategories();
     }
 
     /**
