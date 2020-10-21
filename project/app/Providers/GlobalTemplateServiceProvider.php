@@ -8,6 +8,7 @@ use App\Shop\Categories\Category;
 use App\Shop\Categories\Repositories\CategoryRepository;
 use App\Shop\Employees\Employee;
 use App\Shop\Employees\Repositories\EmployeeRepository;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
@@ -72,7 +73,6 @@ class GlobalTemplateServiceProvider extends ServiceProvider
 
     /**
      * Get all the categories
-     *
      */
     private function getCategories()
     {
@@ -82,12 +82,12 @@ class GlobalTemplateServiceProvider extends ServiceProvider
 
     /**
      * Get all the root categories
+     *
      * @return Collection
      */
     private function getRootCategories()
     {
         $categoryRepo = new CategoryRepository(new Category);
-
         return $categoryRepo->rootCategories();
     }
 
