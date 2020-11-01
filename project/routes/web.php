@@ -44,6 +44,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['employee'], 'as' => 'admin.
                 Route::resource('order-statuses', 'OrderStatusController');
                 Route::get('orders/{id}/invoice', 'OrderController@generateInvoice')->name('orders.invoice.generate');
             });
+
+            Route::namespace('Slides')->group(function () {
+                Route::resource('slides', 'SlidesController');
+                Route::get('remove-image-slide/{slide}', 'SlidesController@removeImage')->name('slide.remove.image');
+            });
+
             Route::resource('addresses', 'Addresses\AddressController');
             Route::resource('countries', 'Countries\CountryController');
             Route::resource('countries.provinces', 'Provinces\ProvinceController');

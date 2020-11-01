@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Shop\Categories\Repositories\Interfaces\CategoryRepositoryInterface;
+use App\Shop\Slides\Slide;
 
 class HomeController
 {
@@ -28,6 +29,8 @@ class HomeController
         $cat1 = $this->categoryRepo->findCategoryById(2);
         $cat2 = $this->categoryRepo->findCategoryById(3);
 
-        return view('front.index', compact('cat1', 'cat2'));
+        $slides = Slide::where('status', true)->orderby('id', 'desc')->limit(10)->get();
+
+        return view('front.index', compact('cat1', 'cat2', 'slides'));
     }
 }

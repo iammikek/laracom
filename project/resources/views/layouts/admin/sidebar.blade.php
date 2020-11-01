@@ -18,6 +18,8 @@
         <ul class="sidebar-menu">
             <li class="header">HOME</li>
             <li><a href="{{ route('admin.dashboard') }}"> <i class="fa fa-home"></i> Home</a></li>
+            <li class="header">SLIDES</li>
+            <li><a href="{{ route('admin.slides.index') }}"><i class="fa fa-circle-o"></i> List slides</a></li>
             <li class="header">SELL</li>
             <li class="treeview @if(request()->segment(2) == 'products' || request()->segment(2) == 'attributes' || request()->segment(2) == 'brands') active @endif">
                 <a href="#">
