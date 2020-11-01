@@ -2,7 +2,6 @@
 
 namespace App\Shop\Slides;
 
-use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Slide extends Model
@@ -18,10 +17,4 @@ class Slide extends Model
         'photo',
         'status'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     *
-     */
 }
